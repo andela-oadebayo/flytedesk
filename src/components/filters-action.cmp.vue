@@ -16,13 +16,14 @@
           {{selected}} selected
         </a>
         <i @click="deleteSelectedColleges()" href="#responsive-header" class="fa fa-trash block lg:inline-block mr-4"></i>
-        <i href="#responsive-header" class="fa fa-share block lg:inline-block"></i>  
+        <i @click="exportCSV()" href="#responsive-header" class="fa fa-share block lg:inline-block"></i>  
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import Csv from '../services/csv-export'
 export default {
   name: 'FilterActions',
   data() {
@@ -44,6 +45,10 @@ export default {
 
     deleteSelectedColleges() {
       this.$store.dispatch('removeCollegeFromList', this.$store.getters['getSelectedSchools'])
+    },
+
+    exportCSV() {
+      Csv.csvExport(this.$store.getters['getAllColleges'])
     }
   },
   computed: {

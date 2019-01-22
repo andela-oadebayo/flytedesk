@@ -51,7 +51,7 @@ export default {
     showModal(name, value) {
       this.$store.dispatch('changeModalType', name);
       this.$store.dispatch('addSchoolToEdit', value);
-    }
+    },
   },
   created() {
     this.$store.dispatch('getAllColleges')

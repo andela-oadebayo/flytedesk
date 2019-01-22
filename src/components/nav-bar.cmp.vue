@@ -1,7 +1,7 @@
 <template>
   <nav class="flex items-center justify-between flex-wrap p-6">
       <div class="flex items-center flex-no-shrink flex-wrap mr-6">
-        <span class="font-semibold text-xl text-grey-dark tracking-tight fl-school-list">School List</span><br/>
+        <span class="font-semibold text-xl text-grey-dark tracking-tight fl-school-list">School List  ({{totalSchool}} in total)</span><br/>
         <span class="font-semibold text-l text-grey-dark tracking-tight">Manage and export data for the school below</span>
       </div>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -18,6 +18,11 @@
 
 <script>
 export default {
+  computed: {
+    totalSchool() {
+      return this.$store.getters['getAllColleges'].length
+    },
+  },
   methods: {
     showModal(name) {
       this.$store.dispatch('changeModalType', name);

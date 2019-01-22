@@ -9,6 +9,18 @@ const helpers = {
       state.selected.push(payload);
     }
   },
+  compare(a, b) {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+
+    let comparison = 0;
+    if (nameA > nameB) {
+      comparison = 1;
+    } else if (nameA < nameB) {
+      comparison = -1;
+    }
+    return comparison;
+  },
 };
 
 const state = {
@@ -20,7 +32,7 @@ const state = {
 };
 
 const getters = {
-  getAllColleges: s => s.colleges,
+  getAllColleges: s => s.colleges.sort(helpers.compare),
   getApiStatus: s => s.status,
   getSelectedSchools: s => s.selected,
   getModalType: s => s.modalType,
@@ -33,7 +45,7 @@ const mutations = {
   },
 
   addToSchoolList: (s, payload) => {
-    s.colleges.push(payload);
+    s.colleges.unshift(payload);
   },
 
   setApiStatus: (s, payload) => {
@@ -121,6 +133,10 @@ const actions = {
 
   editSchool: ({ commit }, payload) => {
     commit('editSchool', payload);
+  },
+
+  createNewSchool: ({ commit }, payload) => {
+    commit('addToSchoolList', payload);
   },
 };
 
