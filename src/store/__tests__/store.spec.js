@@ -63,19 +63,19 @@ describe('Store Unit Test', () => {
     });
 
     test('should set the zip code of currently selected colleges', () => {
-      SchoolStore.mutations.addSchoolToSelected(state, newCollege.zip);
-      expect(state.selected).toContain(newCollege.zip);
+      SchoolStore.mutations.addSchoolToSelected(state, newCollege.name);
+      expect(state.selected).toContain(newCollege.name);
     });
 
     test('should add all the zip code of all colleges', () => {
       SchoolStore.mutations.addAllSchoolToSelected(state);
-      console.log(state.selected);
       expect(state.selected.length).toEqual(5);
     });
   });
 
   describe('actions', () => {
     test('should get all colleges', () => {
+      expect.assertions(2);
       state.colleges = [];
 
       getSchoolList.mockImplementationOnce(() => {});
@@ -83,7 +83,7 @@ describe('Store Unit Test', () => {
         commit: jest.fn(),
       };
       SchoolStore.actions.getAllColleges(context, {});
-      expect(context.commit).toHaveBeenCalledWith('setAllColleges', {});
+      expect(context.commit).toHaveBeenCalledWith('setAllColleges', getSchoolList());
       expect(context.commit).toHaveBeenCalledWith('setApiStatus', true);
     });
   });
