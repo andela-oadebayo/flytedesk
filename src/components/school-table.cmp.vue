@@ -12,12 +12,12 @@
       </thead>
       <tbody v-if="status">
         <tr v-for="(value, index) in colleges" :key="index">
-          <th scope="row"><input @click="addToStore(value.zip)" :checked="selected.includes(value.zip)" type="checkbox"/></th>
+          <th scope="row"><input @click="addToStore(value.name)" :checked="selected.includes(value.name)" type="checkbox"/></th>
           <td>{{value.name}}</td>
           <td>{{value.city}}</td>
           <td>{{value.state}}</td>
           <td>{{value.zip}}</td>
-          <td></td>
+          <td><a href="#" @click="showModal('edit')" data-toggle="modal" data-target="#exampleModal">Edit</a> | <a href="#" @click="deleteCollege(value.name)">Delete</a></td>
         </tr>
       </tbody>
     </table>
@@ -27,7 +27,7 @@
 export default {
   name: 'SchoolTable',
   computed: {
-    status() {
+    status() { 
       return this.$store.getters['getApiStatus']
     },
     colleges() {
@@ -35,15 +35,21 @@ export default {
     },
     selected() {
       return this.$store.getters['getSelectedSchools']
-    }
+    },
   },
   methods: {
-    addToStore(zip) {
-      if (zip !== undefined) {
-        this.$store.dispatch('addSchoolToSelected', zip)
+    addToStore(name) {
+      if (name !== undefined) {
+        this.$store.dispatch('addSchoolToSelected', name)
       } else {
         this.$store.dispatch('addAllSchoolToSelected')
       }
+    },
+    deleteCollege(name) {
+      return this.$store.dispatch('removeCollegeFromList', name)
+    },
+    showModal(name) {
+      this.$store.dispatch('changeModalType', name);
     }
   },
   created() {

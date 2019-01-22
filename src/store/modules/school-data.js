@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { getSchoolList } from '../../services/colleges';
 
 const helpers = {
@@ -15,17 +16,18 @@ const state = {
   colleges: [],
   status: false,
   selected: [],
+  modalType: '',
 };
 
 const getters = {
   getAllColleges: s => s.colleges,
   getApiStatus: s => s.status,
   getSelectedSchools: s => s.selected,
+  getModalType: s => s.modalType,
 };
 
 const mutations = {
   setAllColleges: (s, payload) => {
-    // eslint-disable-next-line no-param-reassign
     s.colleges = payload;
   },
 
@@ -34,7 +36,6 @@ const mutations = {
   },
 
   setApiStatus: (s, payload) => {
-    // eslint-disable-next-line no-param-reassign
     s.status = payload;
   },
 
@@ -43,10 +44,35 @@ const mutations = {
   },
 
   addAllSchoolToSelected: (s) => {
-    // eslint-disable-next-line no-param-reassign
     s.colleges.forEach((value) => {
-      helpers.selectedSplice(s, value.zip);
+      helpers.selectedSplice(s, value.name);
     });
+  },
+
+  filterSchoolList: (s, payload) => {
+    const response = s.colleges.filter((college) => {
+      const string = Object.values(college)
+        .join('')
+        .split(' ')
+        .join('')
+        .toLowerCase();
+      return string.includes(payload.toLowerCase());
+    });
+    s.colleges = response;
+  },
+
+  removeCollegeFromList: (s, payload) => {
+    s.colleges.forEach((college, index) => {
+      if (payload.includes(college.name)) {
+        s.colleges.splice(index, 1);
+      }
+    });
+
+    s.selected = [];
+  },
+
+  changeModalType: (s, payload) => {
+    s.modalType = payload;
   },
 };
 
@@ -62,6 +88,18 @@ const actions = {
 
   addAllSchoolToSelected: ({ commit }) => {
     commit('addAllSchoolToSelected');
+  },
+
+  filterSchoolList: ({ commit }, payload) => {
+    commit('filterSchoolList', payload);
+  },
+
+  removeCollegeFromList: ({ commit }, payload) => {
+    commit('removeCollegeFromList', payload);
+  },
+
+  changeModalType: ({ commit }, payload) => {
+    commit('changeModalType', payload);
   },
 };
 

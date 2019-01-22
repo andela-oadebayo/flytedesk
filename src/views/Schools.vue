@@ -1,20 +1,7 @@
 <template>
   <div class="container mx-auto">
-    <nav class="flex items-center justify-between flex-wrap p-6">
-      <div class="flex items-center flex-no-shrink flex-wrap mr-6">
-        <span class="font-semibold text-xl text-grey-dark tracking-tight fl-school-list">School List</span><br/>
-        <span class="font-semibold text-l text-grey-dark tracking-tight">Manage and export data for the school below</span>
-      </div>
-      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div class="text-sm lg:flex-grow">
-        </div>
-        <div>
-          <button class="bg-blue hover:bg-blue-light text-white font-bold py-2 px-4 border-b-4 border-blue-dark hover:border-blue rounded">
-            Add new School 
-          </button>
-        </div>
-      </div>
-    </nav>
+    <NavBar />
+    <Modal />
     <FilterActions />
     <SchoolTable />
   </div>
@@ -23,10 +10,14 @@
 <script>
 import SchoolTable from '@/components/school-table.cmp.vue'
 import FilterActions from '@/components/filters-action.cmp.vue'
+import Modal from '@/components/modal/modal.cmp.vue'
+import NavBar from '@/components/nav-bar.cmp.vue'
 export default {
   components: {
     SchoolTable,
-    FilterActions
+    FilterActions,
+    Modal,
+    NavBar
   }
 }
 </script>
@@ -58,7 +49,6 @@ export default {
     height: 44px;
     padding: 15px;
     font-size: 13px;
-    display: none;
   }
 
   i {
