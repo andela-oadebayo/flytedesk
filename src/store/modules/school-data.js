@@ -11,12 +11,12 @@ const helpers = {
   },
 };
 
-
 const state = {
   colleges: [],
   status: false,
   selected: [],
   modalType: '',
+  schoolToEdit: {},
 };
 
 const getters = {
@@ -24,6 +24,7 @@ const getters = {
   getApiStatus: s => s.status,
   getSelectedSchools: s => s.selected,
   getModalType: s => s.modalType,
+  getSchoolToEdit: s => s.schoolToEdit,
 };
 
 const mutations = {
@@ -74,6 +75,18 @@ const mutations = {
   changeModalType: (s, payload) => {
     s.modalType = payload;
   },
+
+  addSchoolToEdit: (s, payload) => {
+    s.schoolToEdit = payload;
+  },
+
+  editSchool: (s, payload) => {
+    s.colleges.forEach((value) => {
+      if (value.name === s.schoolToEdit.name) {
+        value = payload;
+      }
+    });
+  },
 };
 
 const actions = {
@@ -100,6 +113,14 @@ const actions = {
 
   changeModalType: ({ commit }, payload) => {
     commit('changeModalType', payload);
+  },
+
+  addSchoolToEdit: ({ commit }, payload) => {
+    commit('addSchoolToEdit', payload);
+  },
+
+  editSchool: ({ commit }, payload) => {
+    commit('editSchool', payload);
   },
 };
 

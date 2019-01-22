@@ -17,7 +17,7 @@
           <td>{{value.city}}</td>
           <td>{{value.state}}</td>
           <td>{{value.zip}}</td>
-          <td><a href="#" @click="showModal('edit')" data-toggle="modal" data-target="#exampleModal">Edit</a> | <a href="#" @click="deleteCollege(value.name)">Delete</a></td>
+          <td><a href="#" @click="showModal('edit', value)" data-toggle="modal" data-target="#exampleModal">Edit</a> | <a href="#" @click="deleteCollege(value.name)">Delete</a></td>
         </tr>
       </tbody>
     </table>
@@ -48,8 +48,9 @@ export default {
     deleteCollege(name) {
       return this.$store.dispatch('removeCollegeFromList', name)
     },
-    showModal(name) {
+    showModal(name, value) {
       this.$store.dispatch('changeModalType', name);
+      this.$store.dispatch('addSchoolToEdit', value);
     }
   },
   created() {
