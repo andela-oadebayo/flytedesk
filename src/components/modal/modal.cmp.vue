@@ -18,8 +18,9 @@
 </template>
 
 <script>
-import Create from './common/create.cmp'
-import Edit from './common/edit.cmp'
+import Create from './common/create.cmp';
+import Edit from './common/edit.cmp';
+
 export default {
   components: {
     Create,
@@ -27,10 +28,9 @@ export default {
   },
 
   computed: {
-    modalType(){
-      return this.$store.getters['getModalType']
-    }
-  }
-}
+    modalType() {
+      return this.$store.getters.getModalType;
+    },
+  },
+};
 </script>
-

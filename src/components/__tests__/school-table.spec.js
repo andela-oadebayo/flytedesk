@@ -1,5 +1,5 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
-import Vuex from 'vuex'
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
 import SchoolTable from '../school-table.cmp.vue';
 
 const localVue = createLocalVue();
@@ -13,7 +13,7 @@ describe('Cmp Table Data', () => {
     storeOptions = {
       state: {},
       actions: {
-        getAllColleges: jest.fn(() => {}), 
+        getAllColleges: jest.fn(() => {}),
       },
       getters: {},
     };
@@ -38,4 +38,4 @@ describe('Cmp Table Data', () => {
     });
     expect(store.dispatch).toHaveBeenCalledWith('getAllColleges');
   });
-})
+});

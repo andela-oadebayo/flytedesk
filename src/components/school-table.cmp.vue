@@ -27,26 +27,26 @@
 export default {
   name: 'SchoolTable',
   computed: {
-    status() { 
-      return this.$store.getters['getApiStatus']
+    status() {
+      return this.$store.getters.getApiStatus;
     },
     colleges() {
-      return this.$store.getters['getAllColleges']
+      return this.$store.getters.getAllColleges;
     },
     selected() {
-      return this.$store.getters['getSelectedSchools']
+      return this.$store.getters.getSelectedSchools;
     },
   },
   methods: {
     addToStore(name) {
       if (name !== undefined) {
-        this.$store.dispatch('addSchoolToSelected', name)
+        this.$store.dispatch('addSchoolToSelected', name);
       } else {
-        this.$store.dispatch('addAllSchoolToSelected')
+        this.$store.dispatch('addAllSchoolToSelected');
       }
     },
     deleteCollege(name) {
-      return this.$store.dispatch('removeCollegeFromList', name)
+      return this.$store.dispatch('removeCollegeFromList', name);
     },
     showModal(name, value) {
       this.$store.dispatch('changeModalType', name);
@@ -54,8 +54,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('getAllColleges')
-  }
-}
+    this.$store.dispatch('getAllColleges');
+  },
+};
 </script>
-

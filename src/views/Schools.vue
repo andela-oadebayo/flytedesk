@@ -8,18 +8,19 @@
 </template>
 
 <script>
-import SchoolTable from '@/components/school-table.cmp.vue'
-import FilterActions from '@/components/filters-action.cmp.vue'
-import Modal from '@/components/modal/modal.cmp.vue'
-import NavBar from '@/components/nav-bar.cmp.vue'
+import SchoolTable from '@/components/school-table.cmp.vue';
+import FilterActions from '@/components/filters-action.cmp.vue';
+import Modal from '@/components/modal/modal.cmp.vue';
+import NavBar from '@/components/nav-bar.cmp.vue';
+
 export default {
   components: {
     SchoolTable,
     FilterActions,
     Modal,
-    NavBar
-  }
-}
+    NavBar,
+  },
+};
 </script>
 
 <style>

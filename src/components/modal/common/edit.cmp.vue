@@ -28,23 +28,22 @@ export default {
         name: '',
         state: '',
         city: '',
-        zip: ''
-      }
-    }
+        zip: '',
+      },
+    };
   },
   computed: {
     schoolToEdit() {
-      return this.$store.getters['getSchoolToEdit'];
+      return this.$store.getters.getSchoolToEdit;
     },
   },
   methods: {
     editSchool() {
-      this.$store.dispatch('editSchool', this.form)
-    }
+      this.$store.dispatch('editSchool', this.form);
+    },
   },
   created() {
-    this.form = this.$store.getters['getSchoolToEdit'];
+    this.form = this.$store.getters.getSchoolToEdit;
   },
-}
+};
 </script>
-

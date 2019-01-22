@@ -34,16 +34,15 @@ export default {
         name: '',
         state: '',
         city: '',
-        zip: ''
+        zip: '',
       },
       error: false,
     };
   },
   methods: {
     addSchool() {
-      Object.values(this.form).includes('') ? this.error = !this.error : this.$store.dispatch('createNewSchool', this.form) ;
-    }
-  }
-}
+      Object.values(this.form).includes('') ? this.error = !this.error : this.$store.dispatch('createNewSchool', this.form);
+    },
+  },
+};
 </script>
-

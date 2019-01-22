@@ -16,45 +16,46 @@
           {{selected}} selected
         </a>
         <i @click="deleteSelectedColleges()" href="#responsive-header" class="fa fa-trash block lg:inline-block mr-4"></i>
-        <i @click="exportCSV()" href="#responsive-header" class="fa fa-share block lg:inline-block"></i>  
+        <i @click="exportCSV()" href="#responsive-header" class="fa fa-share block lg:inline-block"></i>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import Csv from '../services/csv-export'
+import Csv from '../services/csv-export';
+
 export default {
   name: 'FilterActions',
   data() {
     return {
       filter: false,
-      search: ''
-    }
+      search: '',
+    };
   },
   methods: {
     showFilter() {
-      this.filter = !this.filter
+      this.filter = !this.filter;
     },
     filterSchoolList() {
-      console.log(this.search)
+      console.log(this.search);
       if (this.search.length >= 3) {
-        this.$store.dispatch('filterSchoolList', this.search)
+        this.$store.dispatch('filterSchoolList', this.search);
       }
     },
 
     deleteSelectedColleges() {
-      this.$store.dispatch('removeCollegeFromList', this.$store.getters['getSelectedSchools'])
+      this.$store.dispatch('removeCollegeFromList', this.$store.getters.getSelectedSchools);
     },
 
     exportCSV() {
-      Csv.csvExport(this.$store.getters['getAllColleges'])
-    }
+      Csv.csvExport(this.$store.getters.getAllColleges);
+    },
   },
   computed: {
     selected() {
-      return this.$store.getters['getSelectedSchools'].length
-    }
+      return this.$store.getters.getSelectedSchools.length;
+    },
   },
-}
+};
 </script>

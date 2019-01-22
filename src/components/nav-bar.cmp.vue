@@ -9,7 +9,7 @@
         </div>
         <div>
           <button @click="showModal('create')" data-toggle="modal" data-target="#exampleModal" class="bg-blue hover:bg-blue-light text-white font-bold py-2 px-4 border-b-4 border-blue-dark hover:border-blue rounded">
-            Add new School 
+            Add new School
           </button>
         </div>
       </div>
@@ -20,13 +20,13 @@
 export default {
   computed: {
     totalSchool() {
-      return this.$store.getters['getAllColleges'].length
+      return this.$store.getters.getAllColleges.length;
     },
   },
   methods: {
     showModal(name) {
       this.$store.dispatch('changeModalType', name);
-    }
-  }
-}
+    },
+  },
+};
 </script>
